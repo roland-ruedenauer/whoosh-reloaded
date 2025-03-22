@@ -368,6 +368,10 @@ class BufferFile(StructFile):
         self.is_real = False
         self.is_closed = False
 
+    def close(self):
+        super().close()
+        self._buf = None
+
     def subset(self, position, length, name=None):
         name = name or self._name
         return BufferFile(self.get(position, length), name=name)
